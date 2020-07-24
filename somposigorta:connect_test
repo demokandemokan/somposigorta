@@ -1,0 +1,11 @@
+/* test icin olusturulmustur */
+
+from http.client import HTTPSConnection
+from base64 import b64encode
+c = HTTPSConnection("www.somposigorta.com.tr")
+userAndPass = b64encode(b"test@somposigorta.com.tr:T123456").decode("ascii")
+headers = { 'Authorization' : 'Basic %s' %  userAndPass }
+#then connect
+c.request('GET', '/', headers=headers)
+res = c.getresponse()
+data = res.read()  
